@@ -1,0 +1,1 @@
+SELECT fname, lname, schd.session, schd.activity, schd.date, schd.time_start, schd.time_end, trainor.name, trainor.salary, trainor.email, trainor.password FROM schedule AS schd INNER JOIN member ON schd.client_ID = member.client_ID INNER JOIN trainor ON schd.trainor_ID = trainor.trainor_ID WHERE member.age < 25;
