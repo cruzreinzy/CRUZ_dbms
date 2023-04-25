@@ -1,0 +1,67 @@
+DROP DATABASE IF EXISTS gym;
+
+CREATE DATABASE gym;
+USE gym;
+
+CREATE TABLE MEMBER(
+    client_ID int AUTO_INCREMENT PRIMARY KEY,
+    fname varchar(50),
+    lname varchar(50),
+    gender ENUM("male", "female"),
+    age int,
+    contact_add varchar(50),
+    email varchar(50),
+    password varchar(50)
+);
+
+CREATE TABLE MEMBERSHIP(
+    mem_ID int AUTO_INCREMENT PRIMARY KEY,
+    client_ID int REFERENCES MEMBER(client_ID),
+    status ENUM('active', 'expired'),
+    date date DEFAULT CURRENT_DATE
+);
+
+CREATE TABLE PAYMENT(
+    payment_ID int AUTO_INCREMENT PRIMARY KEY,
+    client_ID int REFERENCES MEMBER(client_ID),
+    date date DEFAULT CURRENT_DATE,
+    amount int
+);
+
+CREATE TABLE TRANSACTION_RECORDS(
+    trans_ID int AUTO_INCREMENT PRIMARY KEY,
+    trans_name varchar(50),
+    client_ID int REFERENCES MEMBER(client_ID),
+    amount int,
+    date date DEFAULT CURRENT_DATE
+);
+
+CREATE TABLE TRAINOR(
+    trainor_ID int AUTO_INCREMENT PRIMARY KEY,
+    name varchar(50),
+    sched_ID int,
+    salary int,
+    email varchar(50),
+    password varchar(50)
+);
+
+CREATE TABLE SCHEDULE(
+    sched_ID int AUTO_INCREMENT PRIMARY KEY,
+    client_ID int REFERENCES MEMBER(client_ID),
+    trainor_ID int REFERENCES TRAINOR(trainor_ID),
+    session varchar(50),
+    activity varchar(50),
+    date date DEFAULT CURRENT_DATE,
+    time_start time,
+    time_end time
+);
+
+CREATE TABLE REPORTS(
+    report_ID int AUTO_INCREMENT PRIMARY KEY,
+    client_ID int REFERENCES MEMBER(client_ID),
+    trans_ID int REFERENCES TRANSACTION_RECORDS(trans_ID),
+    total_amount int,
+    date date DEFAULT CURRENT_DATE
+);
+
+SELECT fname, lname, schd.session, schd.activity, schd.date, schd.time_start, schd.time_end, trainor.name, trainor.salary, trainor.email, trainor.password FROM schedule AS schd INNER JOIN member ON schd.client_ID = member.client_ID INNER JOIN trainor ON schd.trainor_ID = trainor.trainor_ID WHERE member.age < 25;
