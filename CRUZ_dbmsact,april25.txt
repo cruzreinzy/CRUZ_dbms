@@ -1,0 +1,23 @@
+Paul Reishen Cruz	BSIT-202
+
+ACTIVITY 2
+
+1. All clients that have an schedule including their instructor:
+
+SELECT CONCAT(fname, ' ', lname) 'Member Full Name', schd.session 'Session', schd.activity 'Activity', schd.date 'Date', schd.time_start 'Time Start', trainor.name 'Instructor' FROM schedule AS schd INNER JOIN member ON schd.client_ID = member.client_ID INNER JOIN trainor ON schd.trainor_ID = trainor.trainor_ID WHERE schd.client_ID IS NOT NULL
+
+2. All client’s total amount to pay and if he is a member of the gym.
+
+SELECT CONCAT(fname, ' ', lname) 'Member Full Name', payment.amount - transaction_records.amount 'Total Amount to Pay', transaction_records.amount 'Amount Paid', membership.status 'Membership Status' FROM member INNER JOIN payment on member.client_ID = payment.client_ID INNER JOIN transaction_records on member.client_ID = transaction_records.client_ID INNER JOIN membership on member.client_ID = membership.client_ID
+
+
+
+ACTIVITY 3
+
+1. 
+
+SELECT CONCAT(fname, ' ', lname) 'Member Full Name', trainor.name 'Instructor', payment.amount 'Payment', payment.amount - transaction_records.amount 'Total Amount to Pay' FROM member INNER JOIN payment ON member.client_ID = payment.client_ID INNER JOIN transaction_records ON member.client_ID = transaction_records.client_ID INNER JOIN schedule AS schd ON member.client_ID = schd.client_ID INNER JOIN trainor ON schd.trainor_ID = trainor.trainor_ID
+
+2.
+
+SELECT trainor.name 'Instructor', CONCAT(fname, ' ', lname) 'Member Full Name', schd.session 'Session', schd.time_start 'Time Start', schd.time_end 'Time End' FROM schedule AS schd INNER JOIN trainor ON schd.trainor_ID = trainor.trainor_ID INNER JOIN member ON schd.client_ID = member.client_ID
