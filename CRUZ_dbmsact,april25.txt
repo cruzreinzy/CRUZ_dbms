@@ -14,10 +14,10 @@ SELECT CONCAT(fname, ' ', lname) 'Member Full Name', payment.amount - transactio
 
 ACTIVITY 3
 
-1. 
+1. All reports in gym.
 
 SELECT CONCAT(fname, ' ', lname) 'Member Full Name', trainor.name 'Instructor', payment.amount 'Payment', payment.amount - transaction_records.amount 'Total Amount to Pay' FROM member INNER JOIN payment ON member.client_ID = payment.client_ID INNER JOIN transaction_records ON member.client_ID = transaction_records.client_ID INNER JOIN schedule AS schd ON member.client_ID = schd.client_ID INNER JOIN trainor ON schd.trainor_ID = trainor.trainor_ID
 
-2.
+2. All trainor in gym with their respective client.
 
 SELECT trainor.name 'Instructor', CONCAT(fname, ' ', lname) 'Member Full Name', schd.session 'Session', schd.time_start 'Time Start', schd.time_end 'Time End' FROM schedule AS schd INNER JOIN trainor ON schd.trainor_ID = trainor.trainor_ID INNER JOIN member ON schd.client_ID = member.client_ID
