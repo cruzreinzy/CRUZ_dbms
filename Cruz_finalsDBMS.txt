@@ -1,0 +1,72 @@
+PAUL REISHEN CRUZ	BSIT-202	FINALS EXAM in DBMS
+
+TEST I.
+
+CREATE TABLE
+
+DROP DATABASE IF EXISTS reinFinals;
+CREATE DATABASE reinFinals;
+USE reinFinals;
+
+CREATE TABLE agent_data(
+    AGENT_CODE varchar(69) NOT NULL PRIMARY KEY,
+    AGENT_NAME varchar(69) NOT NULL,
+    WORKING_AREA varchar(69) NOT NULL,
+    COMMISION varchar(69) NOT NULL,
+    PHONE_NO varchar(69) NOT NULL,
+    COUNTRY varchar(69) NOT NULL
+);
+
+CREATE TABLE customer_data(
+    CUST_CODE varchar(69) NOT NULL PRIMARY KEY,
+    CUST_NAME varchar(69) NOT NULL,
+    CUST_CITY varchar(69) NOT NULL,
+    WORKING_AREA varchar(69) NOT NULL,
+    CUST_COUNTRY varchar(69) NOT NULL,
+    GRADE int(69) NOT NULL,
+    OPENING_AMT int(69) NOT NULL,
+    RECEIVE_AMT int(69) NOT NULL,
+    PAYMENT_AMT int(69) NOT NULL,
+    OUTSTANDING_AMT int(69) NOT NULL,
+    PHONE_NO varchar(69) NOT NULL,
+    AGENT_CODE varchar(69) NOT NULL,
+    CONSTRAINT koneksyon FOREIGN KEY (AGENT_CODE) REFERENCES agent_data(AGENT_CODE)
+);
+
+
+INSERT DATA in AGENT
+
+INSERT INTO agent_data (AGENT_CODE, AGENT_NAME, WORKING_AREA, COMMISION, PHONE_NO, COUNTRY)
+VALUES ('A007', 'Ramasundar', 'Bangalore', '0.15', '077-25814763', ''),
+('A003', 'Alex', 'London', '0.13', '075-12458969', ''),
+('A008', 'Alford', 'New York', '0.12', '044-25874365', ''),
+('A011', 'Ravi Kumar', 'Bangalore', '0.15', '077-54625874', ''),
+('A010', 'Santakumar', 'Chennai', '0.14', '007-22388644', ''),
+('A012', 'Lucida', 'San Jose', '0.12', '044-52981425', ''),
+('A005', 'Anderson', 'Brisban', '0.13', '045-21447739', ''),
+('A001', 'Subbarao', 'Bangalore', '0.14', '077-12346674', ''),
+('A002', 'Mukesh', 'Mumbai', '0.11', '029-12358964', ''),
+('A006', 'McDen', 'London', '0.15', '078-22255588', ''),
+('A004', 'Ivan', 'Torento', '0.15', '008-22544166', ''),
+('A009', 'Benjamin', 'Hampshair', '0.11', '008-22536178', '')
+
+INSERT DATA IN CUSTOMER
+
+INSERT INTO customer_data (CUST_CODE, CUST_NAME, CUST_CITY, WORKING_AREA, CUST_COUNTRY, GRADE, OPENING_AMT, RECEIVE_AMT, PAYMENT_AMT, OUTSTANDING_AMT, PHONE_NO, AGENT_CODE)
+VALUES ('C00013', 'Holmes', 'London', 'London', 'UK', '2', '6000', '5000', '7000', '4000', 'BBBBBBB', 'A003'),
+('C00001', 'Micheal', 'New York', 'New York', 'USA', '2', '3000', '5000', '2000', '6000', 'CCCCCCC', 'A008'),
+('C00020', 'Albert', 'New York', 'New York', 'USA', '3', '5000', '7000', '6000', '6000', 'BBBBSBB', 'A008'),
+('C00025', 'Ravindran', 'Bangalore', 'Bangalore', 'India', '2', '5000', '7000', '4000', '8000', 'AVAVAVA', 'A011'),
+('C00014', 'Cook', 'London', 'London', 'UK', '2', '4000', '9000', '7000', '6000', 'FSDDSDF', 'A006'),
+('C00015', 'Stuart', 'London', 'London', 'UK', '1', '6000', '8000', '3000', '11000', 'GFSGERS', 'A003'),
+('C00002', 'Bolt', 'New York', 'New York', 'USA', '3', '5000', '7000', '9000', '3000', 'DDNRDRH', 'A008'),
+('C00018', 'Fleming', 'Brisban', 'Brisban', 'Australia', '2', '7000', '7000', '9000', '5000', 'NHBGVFC', 'A005'),
+('C00021', 'Jacks', 'Brisban', 'Brisban', 'Australia', '1', '7000', '7000', '7000', '7000', 'WERTGDF', 'A005')
+
+
+TEST II.
+
+a. SELECT (SELECT AGENT_CODE FROM agent_data) AS CONNECT FROM customer_data WHERE AGENT_CODE = 69
+b. UPDATE customer_data SET PAYMENT_AMT = '4500' WHERE AGENT_CODE = 'A007'
+c. SELECT * FROM customer_data INNER JOIN agent_data ON customer_data.AGENT_CODE = agent_data.AGENT_CODE WHERE COMMISION < 0.14 and PAYMENT_AMT > 4500
+d. SELECT CUST_NAME AS Customer, customer_data.WORKING_AREA AS 'Working Area',OUTSTANDING_AMT AS 'Outstanding Amount', AGENT_NAME AS Agent FROM customer_data INNER JOIN agent_data ON customer_data.AGENT_CODE = agent_data.AGENT_CODE
