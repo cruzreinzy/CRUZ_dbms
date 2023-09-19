@@ -1,0 +1,74 @@
+/******************************************************************************
+
+                            Online C# Compiler.
+                Code, Compile, Run and Debug C# program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+using System;
+
+class Student{
+    public string student_name = "Hatdog Sandwich";
+    public string age = "20";
+    public string school_id = "21-0258";
+    public string subject = "OOPL";
+    public string course = "IT";
+    
+}
+
+class School : Student{
+    public string school_name = "EPCST";
+    public string display_sn(){
+        return student_name;
+    }
+}
+
+class Subjects : Student{
+    public string subject_name = "OOPL";
+    public string subject_code = "0909";
+    public string course = "IT";
+    public string display_sn(){
+        return student_name;
+    }
+}
+
+class Course : Student{
+    public string display_sn(){
+        return student_name;
+    }
+    public string school_name = "EPCST";
+    public string subject_name = "OOPL";
+}
+
+class HelloWorld {
+  static void Main() {
+    
+    Console.WriteLine("*****STUDENT*****");
+    
+    Student stud1 = new Student();
+    Console.WriteLine("Student Name: " + stud1.student_name);
+    Console.WriteLine("Age: " + stud1.age);
+    Console.WriteLine("School ID: " + stud1.school_id);
+    Console.WriteLine("Subject: " + stud1.subject);
+    Console.WriteLine("Course: " + stud1.course);
+    
+    Console.WriteLine("*****SCHOOL*****");
+    School school1 = new School();
+    Console.WriteLine("School Name: " + school1.school_name);
+    Console.WriteLine("Student Name: " + school1.student_name);
+    
+    Console.WriteLine("*****SUBJECTS*****");
+    Subjects sub1 = new Subjects();
+    Console.WriteLine("Subject Name: " + sub1.subject_name);
+    Console.WriteLine("Subject Code: " + sub1.subject_code);
+    Console.WriteLine("Course: " + sub1.course);
+    Console.WriteLine("Student Name: " + sub1.student_name);
+    
+    Console.WriteLine("*****COURSE*****");
+    Course course1 = new Course();
+    Console.WriteLine("Student Name: " + course1.student_name);
+    Console.WriteLine("School Name: " + course1.school_name);
+    Console.WriteLine("Subject Name: " + course1.subject_name);
+  }
+}
